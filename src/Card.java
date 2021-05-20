@@ -4,11 +4,16 @@ public class Card {
     private Suit suit;
     private Rank rank;
 
+    Card(Suit suit, Rank rank) {
+        this.suit = suit;
+        this.rank = rank;
+    }
+
     public ArrayList<Integer> getPoints() {
         return rank.getPoints();
     }
 
     public String show() {
-        return suit.show() + rank.show();
+        return rank.show() + suit.show();
     }
 }
