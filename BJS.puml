@@ -1,0 +1,75 @@
+@startuml
+
+class SuitEnum {
+    - suit
+    + show()
+}
+
+class Rank{
+    - rank
+    - points = []
+    + show()
+    + getPoints()
+}
+
+class Card {
+    - suit: SuitEnum
+    - rank: Rank
+    + getPoints()
+    + show()
+}
+
+Card --> SuitEnum
+Card --> Rank
+
+class Deck {
+    - cards
+    - currentCardIndex = 0
+    + generate_deck()
+    + nextCard()   // error if deck is over
+    + shuffle()   // error if currentCardIndex != 0
+}
+
+class BlackjackSolitaireLine {
+    - cards: Array
+    - const threshold: int
+    + getPoints()
+    + getLength()
+}
+
+class BlackjackSolitaireTable {
+    - cells = [1, ..., 20]
+    + show()
+    + putCardToCell(card, cell)
+    + isFull()
+    + getBlackjackSolitaireLines()
+}
+
+class ScoreResolver {
+    + calculateScoreForLine()
+}
+
+class BlackjackSolitaire {
+    + play()
+}
+
+class BlackjackSolitaireRunner{
+    main()
+}
+
+BlackjackSolitaireRunner --> BlackjackSolitaire
+BlackjackSolitaireTable --> BlackjackSolitaireLine
+BlackjackSolitaireTable --> Card
+
+BlackjackSolitaire --> ScoreResolver
+BlackjackSolitaire --> BlackjackSolitaireTable
+BlackjackSolitaire --> Deck
+BlackjackSolitaire --> Card
+ScoreResolver --> BlackjackSolitaireLine
+
+BlackjackSolitaireLine --> Card
+
+Deck --> Card
+Deck --> SuitEnum
+Deck --> Rank
+@enduml
