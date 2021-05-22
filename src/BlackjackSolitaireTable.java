@@ -16,9 +16,9 @@ public class BlackjackSolitaireTable {
     };
     private String blackjackSolitaireTableView =
             "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
-                    "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
-                    "   \t\t%s\t\t%s\t\t%s\t\t\n" +
-                    "   \t\t%s\t\t%s\t\t%s\t\t\n";
+            "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
+            "   \t\t%s\t\t%s\t\t%s\t\t\n" +
+            "   \t\t%s\t\t%s\t\t%s\t\t\n";
 
     private int getNumberOfFreeDiscardCells() {
         int numberOfFreeDiscardCells = 4;
@@ -40,7 +40,10 @@ public class BlackjackSolitaireTable {
     }
 
     public void putCardToCell(Card card, int cellIndex) {
+        cellIndex -= 1;
+
         if (cellIndex >= cells.length) {
+            System.out.println(cells.length);
             throw new ArrayIndexOutOfBoundsException(cells.length);
         }
         if (cellIndex < 0) {
@@ -49,7 +52,11 @@ public class BlackjackSolitaireTable {
         if (cells[cellIndex] != null) {
             System.out.println("You are idiot");
         }
-        cells[cellIndex - 1] = card;
+        cells[cellIndex] = card;
+    }
+
+    public String getCardNameByIndex(int cardIndex) {
+        return cells[cardIndex - 1] == null ? null : cells[cardIndex - 1].show();
     }
 
     private ArrayList<Card> createArrayListFromCellsIndexes(int[] indexes) {
@@ -75,7 +82,6 @@ public class BlackjackSolitaireTable {
     }
 
     public String show() {
-
         String[] currentCellValues = new String[activeCellsSize];
         for (int i = 0; i < activeCellsSize; i++) {
             currentCellValues[i] = cells[i] == null ? String.valueOf(i + 1) : cells[i].show();

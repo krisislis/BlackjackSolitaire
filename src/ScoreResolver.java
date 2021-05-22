@@ -1,5 +1,5 @@
 public class ScoreResolver {
-    public int CalculateScoreForLine(BlackjackSolitaireLine blackjackSolitaireLine) {
+    public static int CalculateScoreForLine(BlackjackSolitaireLine blackjackSolitaireLine) {
         int linePoints = blackjackSolitaireLine.getPoints();
         int lineLength = blackjackSolitaireLine.getLength();
         if (linePoints == 21 & lineLength == 2) {
