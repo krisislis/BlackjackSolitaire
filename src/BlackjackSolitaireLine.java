@@ -15,8 +15,8 @@ public class BlackjackSolitaireLine {
     }
 
     public int getPoints() {
-        HashSet<Integer> previousPoints = new HashSet<Integer>();
-        HashSet<Integer> nextPoints = new HashSet<Integer>();
+        HashSet<Integer> previousPoints = new HashSet<>();
+        HashSet<Integer> nextPoints = new HashSet<>();
         previousPoints.add(0);
 
         for (Card card : cards) {
