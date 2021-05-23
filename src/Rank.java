@@ -19,11 +19,11 @@ public enum Rank {
     KING("K", "10"),
     ACE("A", "1 11");
     private String rank;
-    private ArrayList<Integer> points = new ArrayList<Integer>();
+    private ArrayList<Integer> points;
 
     Rank(String rank, String pointsString) {
         this.rank = rank;
-        this.points = new ArrayList<Integer>();
+        this.points = new ArrayList<>();
         for (String s : pointsString.split(" ")) {
             Integer point = Integer.parseInt(s);
             this.points.add(point);

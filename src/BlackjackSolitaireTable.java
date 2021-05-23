@@ -34,6 +34,14 @@ public class BlackjackSolitaireTable {
         return numberOfFreeDiscardCells;
     }
 
+    private ArrayList<Card> createArrayListFromCellsIndexes(int[] indexes) {
+        ArrayList<Card> cardArrayList = new ArrayList<>();
+        for (int i : indexes) {
+            cardArrayList.add(cells[i]);
+        }
+        return cardArrayList;
+    }
+
     private String getCardNameByIndex(int cardIndex) {
         return cells[cardIndex] == null ? null : cells[cardIndex].show();
     }
@@ -50,14 +58,6 @@ public class BlackjackSolitaireTable {
             }
         }
         return true;
-    }
-
-    private ArrayList<Card> createArrayListFromCellsIndexes(int[] indexes) {
-        ArrayList<Card> cardArrayList = new ArrayList<>();
-        for (int i : indexes) {
-            cardArrayList.add(cells[i]);
-        }
-        return cardArrayList;
     }
 
     /**

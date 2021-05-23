@@ -9,22 +9,18 @@ public class BlackjackSolitaire {
 
     private static String delimiter = String.join("", Collections.nCopies(75, "*"));
 
-    private static String CardReplacementMessage(String cardName) {
+    private static String cardReplacementMessage(String cardName) {
         return String.format("Current card is %s; where do you want to place it? ", cardName);
     }
 
-    private static String FinalScoreMessage(int score) {
-        return String.format("Final score: %d.", score);
-    }
-
-    private static int getFinalScore(BlackjackSolitaireTable gameTable) {
-        if (gameTable == null) return 0;
+    private static String getFinalScoreMessage(BlackjackSolitaireTable gameTable) {
+        if (gameTable == null) return null;
 
         int score = 0;
         for (BlackjackSolitaireLine line : gameTable.getBlackjackSolitaireLines()) {
             score += ScoreResolver.CalculateScoreForLine(line);
         }
-        return score;
+        return String.format("Final score: %d.", score);
     }
 
     /**
@@ -47,7 +43,7 @@ public class BlackjackSolitaire {
 
             Card card = deck.nextCard();
             while (true) {
-                System.out.print(CardReplacementMessage(card.show()));
+                System.out.print(cardReplacementMessage(card.show()));
                 cardPlaceLine = in.nextLine();
                 try {
                     cardPlace = Integer.parseInt(cardPlaceLine);
@@ -66,7 +62,7 @@ public class BlackjackSolitaire {
             }
         }
 
-        System.out.println(getFinalScore(gameTable));
+        System.out.println(getFinalScoreMessage(gameTable));
     }
 
 }

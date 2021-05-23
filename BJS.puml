@@ -1,75 +1,80 @@
 @startuml
 
-class SuitEnum {
-    - suit
-    + show()
+enum Suit {
+    - shortName: String
+    + show(): String
 }
 
-class Rank{
-    - rank
-    - points = []
-    + show()
-    + getPoints()
+enum Rank{
+    - rank: String
+    - points: ArrayList<Integer>
+    + getPoints(): ArrayList<Integer>
+    + show(): String
 }
 
 class Card {
-    - suit: SuitEnum
+    - suit: Suit
     - rank: Rank
-    + getPoints()
-    + show()
+    + getPoints(): ArrayList<Integer>
+    + show(): String
 }
 
-Card --> SuitEnum
-Card --> Rank
+Card o-- Suit
+Card o-- Rank
 
 class Deck {
-    - cards
-    - currentCardIndex = 0
-    + generate_deck()
-    + nextCard()   // error if deck is over
-    + shuffle()   // error if currentCardIndex != 0
+    - cards: ArrayList<Card>
+    - currentCardIndex: int
+    + nextCard(): Card
+    + shuffle()
 }
 
 class BlackjackSolitaireLine {
-    - cards: Array
-    - const threshold: int
-    + getPoints()
-    + getLength()
+    - cards: ArrayList<Card>
+    - threshold: int
+    + getPoints(): int
+    + getLength(): int
 }
 
 class BlackjackSolitaireTable {
-    - cells = [1, ..., 20]
-    + show()
-    + putCardToCell(card, cell)
-    + isFull()
-    + getBlackjackSolitaireLines()
+    - cells: Card[]
+    - getNumberOfFreeDiscardCells(): int
+    - getCardNameByIndex(): String
+    - createArrayListFromCellsIndexes(): ArrayList<Card>
+    + isFull(): boolean
+    + putCardToCell()
+    + getBlackjackSolitaireLines(): BlackjackSolitaireLine[]
+    + show(): String
 }
 
 class ScoreResolver {
-    + calculateScoreForLine()
+    + CalculateScoreForLine(): int
 }
 
 class BlackjackSolitaire {
+    - getFinalScoreMessage(): String
     + play()
 }
 
 class BlackjackSolitaireRunner{
-    main()
+    + main()
 }
 
-BlackjackSolitaireRunner --> BlackjackSolitaire
-BlackjackSolitaireTable --> BlackjackSolitaireLine
-BlackjackSolitaireTable --> Card
+BlackjackSolitaireRunner ..> BlackjackSolitaire
 
-BlackjackSolitaire --> ScoreResolver
-BlackjackSolitaire --> BlackjackSolitaireTable
-BlackjackSolitaire --> Deck
-BlackjackSolitaire --> Card
-ScoreResolver --> BlackjackSolitaireLine
+BlackjackSolitaireTable ..> BlackjackSolitaireLine
+BlackjackSolitaireTable ..> Card
 
-BlackjackSolitaireLine --> Card
+BlackjackSolitaire ..> ScoreResolver
+BlackjackSolitaire ..> BlackjackSolitaireTable
+BlackjackSolitaire ..> Deck
+BlackjackSolitaire ..> Card
 
-Deck --> Card
-Deck --> SuitEnum
-Deck --> Rank
+ScoreResolver ..> BlackjackSolitaireLine
+
+BlackjackSolitaireLine o-- Card
+
+Deck o-- Card
+Deck ..> Suit
+Deck ..> Rank
 @enduml
