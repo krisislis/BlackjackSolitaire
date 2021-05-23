@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Card Deck class, which describes the playing deck model.
+ */
 public class Deck {
     private ArrayList<Card> cards;
     private int currentCardIndex;
@@ -16,16 +19,23 @@ public class Deck {
         }
     }
 
-    // TODO
+    /**
+     * Iteratively returns cards from the deck.
+     * @return Card from the deck.
+     */
     public Card nextCard() {
+        // TODO
         if (currentCardIndex == cards.size() - 1) {
             return null;
         }
         return cards.get(currentCardIndex++);
     }
 
-    // TODO
+    /**
+     * Shuffle the deck if game hasn't been started.
+     */
     public void shuffle() {
+        // TODO
         if (currentCardIndex == 0) {
             Collections.shuffle(cards);
         }

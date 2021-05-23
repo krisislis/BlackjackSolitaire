@@ -1,6 +1,9 @@
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * BlackjackSolitaire class describes game process.
+ */
 public class BlackjackSolitaire {
     private static String greetingMessage = "Welcome to Blackjack Solitaire Game!";
 
@@ -14,6 +17,10 @@ public class BlackjackSolitaire {
         return String.format("Final score: %d.", score);
     }
 
+    /**
+     * This is the most important method to control the entire process of the game,
+     * including communication with the player.
+     */
     public static void play() {
         System.out.println(greetingMessage);
         Deck deck = new Deck();

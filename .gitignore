@@ -1,2 +1,7 @@
 /out/
 /.idea/
+/allclasses-frame.html
+/*.html
+/*.css
+/*.js
+package-list

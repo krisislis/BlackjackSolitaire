@@ -1,4 +1,12 @@
+/**
+ * ScoreResolver class describes calculation scores for BlackjackSolitaireLine
+ */
 public class ScoreResolver {
+    /**
+     * This method returns scores for BlackjackSolitaire line
+     * @param blackjackSolitaireLine get BlackjackSolitaire line from game table
+     * @return score for BlackjackSolitaire line
+     */
     public static int CalculateScoreForLine(BlackjackSolitaireLine blackjackSolitaireLine) {
         int linePoints = blackjackSolitaireLine.getPoints();
         int lineLength = blackjackSolitaireLine.getLength();
