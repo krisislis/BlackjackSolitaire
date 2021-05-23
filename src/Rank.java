@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+
 /**
- * All available card ranks.
- * Every card has a rank name and array with all points for this card.
+ * Rank enum stores ranks of playing cards
+ * Every Rank has a rank name and array with all points for card with this rank
  */
 public enum Rank {
     TWO("2", "2"),
@@ -30,16 +31,18 @@ public enum Rank {
     }
 
     /**
-     * Return rank name.
-     * @return First letter for not-number ranks or number of rank.
+     * Returns rank name
+     *
+     * @return First letter for non-number ranks, otherwise number
      */
     public String show() {
         return rank;
     }
 
     /**
-     * Return points for card.
-     * @return ArrayList of all possible points for card
+     * Returns points for card rank
+     *
+     * @return ArrayList of all possible points for card rank
      */
     public ArrayList<Integer> getPoints() {
         return points;

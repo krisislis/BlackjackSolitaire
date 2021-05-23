@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.HashSet;
 
 /**
- * BlackjackSolitaireLine class describes line of cards of BlackJackSolitaire game table.
+ * BlackjackSolitaireLine class describes line of cards of BlackJack solitaire game table
  */
 public class BlackjackSolitaireLine {
     private ArrayList<Card> cards;
@@ -14,7 +14,8 @@ public class BlackjackSolitaireLine {
     }
 
     /**
-     * This method is used to get number of cards in BlackjackSolitaire line.
+     * Returns number of cards in BlackjackSolitaire line
+     *
      * @return length of card line
      */
     public int getLength() {
@@ -22,10 +23,11 @@ public class BlackjackSolitaireLine {
     }
 
     /**
-     * This method is used to calculate point in card line.
+     * Calculate points in card line
      * The method calculates all possible points that can be obtained in the line
-     * and choose the most profitable for the player.
-     * @return point for BlackjackSolitaire line
+     * and choose the most profitable for the player
+     *
+     * @return points for BlackjackSolitaire line
      */
     public int getPoints() {
         HashSet<Integer> previousPoints = new HashSet<>();

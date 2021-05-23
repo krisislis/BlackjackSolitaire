@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Card Deck class, which describes the playing deck model.
+ * Card Deck class describes the playing deck model
  */
 public class Deck {
     private ArrayList<Card> cards;
@@ -20,7 +20,8 @@ public class Deck {
     }
 
     /**
-     * Iteratively returns cards from the deck.
+     * Return next card from the deck
+     *
      * @return Card from the deck.
      */
     public Card nextCard() {
@@ -32,7 +33,7 @@ public class Deck {
     }
 
     /**
-     * Shuffle the deck if game hasn't been started.
+     * Shuffles the deck if no cards have been drawn yet
      */
     public void shuffle() {
         // TODO

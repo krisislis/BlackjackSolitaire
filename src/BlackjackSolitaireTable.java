@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 /**
- * BlackjackSolitaireTable class describes BlackjackSolitaire game table.
- * It has 20 card cells, 16 of them are for active cards and other cells are for discard cards.
+ * BlackjackSolitaireTable class describes BlackjackSolitaire game table
+ * It has 20 card cells, 16 of them are for active cards and other cells are for discard cards
  */
 public class BlackjackSolitaireTable {
     private Card[] cells = new Card[20];
@@ -20,15 +20,15 @@ public class BlackjackSolitaireTable {
     };
     private String blackjackSolitaireTableView =
             "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
-            "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
-            "   \t\t%s\t\t%s\t\t%s\t\t\n" +
-            "   \t\t%s\t\t%s\t\t%s\t\t\n";
+                    "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
+                    "   \t\t%s\t\t%s\t\t%s\n" +
+                    "   \t\t%s\t\t%s\t\t%s\n";
 
     private int getNumberOfFreeDiscardCells() {
-        int numberOfFreeDiscardCells = 4;
+        int numberOfFreeDiscardCells = 0;
         for (int i = activeCellsSize; i < cells.length; i++) {
-            if (cells[i] != null) {
-                numberOfFreeDiscardCells--;
+            if (cells[i] == null) {
+                numberOfFreeDiscardCells++;
             }
         }
         return numberOfFreeDiscardCells;
@@ -39,7 +39,8 @@ public class BlackjackSolitaireTable {
     }
 
     /**
-     * This method checks if there are free cells for cards
+     * Check if there are free cells for cards
+     *
      * @return true if there are free cells, otherwise false
      */
     public boolean isFull() {
@@ -51,35 +52,6 @@ public class BlackjackSolitaireTable {
         return true;
     }
 
-    /**
-     * This method allows to put a card in a cell of the game table.
-     * @param card Card object to pull in cell
-     * @param cellIndex Number of cell on a game table
-     */
-    public void putCardToCell(Card card, int cellIndex) throws IllegalArgumentException {
-        cellIndex--;
-        String cardNameByIndex;
-
-        if (cellIndex >= cells.length) {
-            System.out.println(cells.length);
-            throw new IllegalArgumentException("Place index can not be more than 20!");
-        }
-        if (cellIndex < 0) {
-            throw new IllegalArgumentException("Place index can not be less than 1!");
-        }
-
-        if ((cellIndex >= 16) | getNumberOfFreeDiscardCells() == 0){
-            throw new IllegalArgumentException("No more free discard cells!");
-        }
-
-        if ((cardNameByIndex = getCardNameByIndex(cellIndex)) != null) {
-            throw new IllegalArgumentException(
-                    String.format("Already occupied by %s. Pick another place.", cardNameByIndex)
-            );
-        }
-        cells[cellIndex] = card;
-    }
-
     private ArrayList<Card> createArrayListFromCellsIndexes(int[] indexes) {
         ArrayList<Card> cardArrayList = new ArrayList<>();
         for (int i : indexes) {
@@ -89,7 +61,33 @@ public class BlackjackSolitaireTable {
     }
 
     /**
+     * Allow to put a card in a cell of the game table
+     *
+     * @param card      Card object to pull in cell
+     * @param cellIndex Number of cell on a game table
+     * @throws IllegalArgumentException if out-of-bound cell index or cell has already been filled
+     */
+    public void putCardToCell(Card card, int cellIndex) throws IllegalArgumentException {
+        cellIndex--;
+        String cardNameByIndex;
+
+        if (cellIndex >= cells.length) {
+            throw new IllegalArgumentException("Place index can not be more than 20!");
+        }
+        if (cellIndex < 0) {
+            throw new IllegalArgumentException("Place index can not be less than 1!");
+        }
+        if ((cardNameByIndex = getCardNameByIndex(cellIndex)) != null) {
+            throw new IllegalArgumentException(
+                    String.format("Already occupied by %s. Pick another place.", cardNameByIndex)
+            );
+        }
+        cells[cellIndex] = card;
+    }
+
+    /**
      * Return all possible BlackJackSolitaire lines of game table, when game is over.
+     *
      * @return all BlackJackSolitaire lines
      */
     public BlackjackSolitaireLine[] getBlackjackSolitaireLines() {
@@ -108,6 +106,7 @@ public class BlackjackSolitaireTable {
 
     /**
      * Return formatted view of game table
+     *
      * @return String with view of BlackjackSolitaireTable
      */
     public String show() {
