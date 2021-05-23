@@ -2,45 +2,63 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class BlackjackSolitaire {
-    private static String GreetingMessage() {
-        return "Welcome to Blackjack Solitaire Game!";
-    }
+    private static String greetingMessage = "Welcome to Blackjack Solitaire Game!";
+
+    private static String delimiter = String.join("", Collections.nCopies(50, "*"));
 
     private static String CardReplacementMessage(String cardName) {
         return String.format("Current card is %s; where do you want to place it? ", cardName);
     }
 
-    private static String AlreadyOccupiedMessage(String cardName) {
-        return String.format("Already occupied by %s. Pick another place.", cardName);
+    private static String FinalScoreMessage(int score) {
+        return String.format("Final score: %d.", score);
     }
 
-    public static void play(){
-        System.out.println(GreetingMessage());
+    public static void play() {
+        System.out.println(greetingMessage);
         Deck deck = new Deck();
         deck.shuffle();
 
         BlackjackSolitaireTable gameTable = new BlackjackSolitaireTable();
         Scanner in = new Scanner(System.in);
 
-        do {
-            System.out.println(gameTable.show());
-            System.out.println(String.join("", Collections.nCopies(25, "*")));
-            Card currentCard = deck.nextCard();
-            System.out.println(CardReplacementMessage(currentCard.show()));
-            int cardPlace = in.nextInt();
-            String cardNameByIndex;
-            while ((cardNameByIndex = gameTable.getCardNameByIndex(cardPlace)) != null) {
-                System.out.println(AlreadyOccupiedMessage(cardNameByIndex));
-                cardPlace = in.nextInt();
-            }
+        System.out.println(gameTable.show());
+        Card card = deck.nextCard();
+        String cardPlaceLine;
+        int cardPlace;
+        boolean cardIsPlaced = false;
 
-            gameTable.putCardToCell(currentCard, cardPlace);
-        } while (!gameTable.isFull());
+        while (!gameTable.isFull()) {
+            System.out.println(delimiter);
+
+            if (cardIsPlaced) {
+                card = deck.nextCard();
+            }
+            System.out.print(CardReplacementMessage(card.show()));
+            cardPlaceLine = in.nextLine();
+            try {
+                cardPlace = Integer.parseInt(cardPlaceLine);
+            } catch (NumberFormatException e) {
+                System.out.println("Space index must be integer!");
+                continue;
+            }
+            try {
+                gameTable.putCardToCell(card, cardPlace);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                cardIsPlaced = false;
+                continue;
+            }
+            cardIsPlaced = true;
+            System.out.println(gameTable.show());
+        }
 
         int score = 0;
-        for (BlackjackSolitaireLine line: gameTable.getBlackjackSolitaireLines()) {
+        for (BlackjackSolitaireLine line : gameTable.getBlackjackSolitaireLines()) {
             score += ScoreResolver.CalculateScoreForLine(line);
         }
-        System.out.println(score);
-    };
+        System.out.println(FinalScoreMessage(score));
+    }
+
+    ;
 }

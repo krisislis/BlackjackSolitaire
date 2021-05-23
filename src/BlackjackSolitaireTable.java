@@ -30,6 +30,10 @@ public class BlackjackSolitaireTable {
         return numberOfFreeDiscardCells;
     }
 
+    private String getCardNameByIndex(int cardIndex) {
+        return cells[cardIndex] == null ? null : cells[cardIndex].show();
+    }
+
     public boolean isFull() {
         for (int i = 0; i < activeCellsSize; i++) {
             if (cells[i] == null) {
@@ -40,23 +44,27 @@ public class BlackjackSolitaireTable {
     }
 
     public void putCardToCell(Card card, int cellIndex) {
-        cellIndex -= 1;
+        cellIndex--;
+        String cardNameByIndex;
 
         if (cellIndex >= cells.length) {
             System.out.println(cells.length);
-            throw new ArrayIndexOutOfBoundsException(cells.length);
+            throw new IllegalArgumentException("Place index can not be more than 20!");
         }
         if (cellIndex < 0) {
-            throw new ArrayIndexOutOfBoundsException(-1);
+            throw new IllegalArgumentException("Place index can not be less than 1!");
         }
-        if (cells[cellIndex] != null) {
-            System.out.println("You are idiot");
+
+        if ((cellIndex >= 16) | getNumberOfFreeDiscardCells() == 0){
+            throw new IllegalArgumentException("No more free discard cells!");
+        }
+
+        if ((cardNameByIndex = getCardNameByIndex(cellIndex)) != null) {
+            throw new IllegalArgumentException(
+                    String.format("Already occupied by %s. Pick another place.", cardNameByIndex)
+            );
         }
         cells[cellIndex] = card;
-    }
-
-    public String getCardNameByIndex(int cardIndex) {
-        return cells[cardIndex - 1] == null ? null : cells[cardIndex - 1].show();
     }
 
     private ArrayList<Card> createArrayListFromCellsIndexes(int[] indexes) {
