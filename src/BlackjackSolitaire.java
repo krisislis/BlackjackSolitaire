@@ -27,7 +27,7 @@ public class BlackjackSolitaire {
      * This is the most important method to control the entire process of the game,
      * including communication with the player.
      */
-    public static void play() {
+    public void play() {
         Deck deck = new Deck();
         deck.shuffle();
         BlackjackSolitaireTable gameTable = new BlackjackSolitaireTable();
