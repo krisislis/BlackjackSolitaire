@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * BlackjackSolitaireTable class describes BlackjackSolitaire game table
@@ -34,8 +35,8 @@ public class BlackjackSolitaireTable {
         return numberOfFreeDiscardCells;
     }
 
-    private ArrayList<Card> createArrayListFromCellsIndexes(int[] indexes) {
-        ArrayList<Card> cardArrayList = new ArrayList<>();
+    private List<Card> createArrayListFromCellsIndexes(int[] indexes) {
+        List<Card> cardArrayList = new ArrayList<Card>();
         for (int i : indexes) {
             cardArrayList.add(cells[i]);
         }

@@ -1,16 +1,17 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Card Deck class describes the playing deck model
  */
 public class Deck {
-    private ArrayList<Card> cards;
+    private List<Card> cards;
     private int currentCardIndex;
 
     Deck() {
         this.currentCardIndex = 0;
-        this.cards = new ArrayList<Card>();
+        this.cards = new ArrayList<Card>(Suit.values().length * Rank.values().length);
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 Card card = new Card(suit, rank);
@@ -25,7 +26,6 @@ public class Deck {
      * @return Card from the deck.
      */
     public Card nextCard() {
-        // TODO
         if (currentCardIndex == cards.size() - 1) {
             return null;
         }
@@ -36,10 +36,7 @@ public class Deck {
      * Shuffles the deck if no cards have been drawn yet
      */
     public void shuffle() {
-        // TODO
-        if (currentCardIndex == 0) {
-            Collections.shuffle(cards);
-        }
+        Collections.shuffle(cards);
     }
 
 }

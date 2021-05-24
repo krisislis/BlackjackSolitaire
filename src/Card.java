@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Card class describes card model
@@ -18,7 +18,7 @@ public class Card {
      *
      * @return ArrayList of points
      */
-    public ArrayList<Integer> getPoints() {
+    public List<Integer> getPoints() {
         return rank.getPoints();
     }
 

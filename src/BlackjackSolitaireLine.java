@@ -1,15 +1,13 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * BlackjackSolitaireLine class describes line of cards of BlackJack solitaire game table
  */
 public class BlackjackSolitaireLine {
-    private ArrayList<Card> cards;
+    private List<Card> cards;
     private static final int threshold = 21;
 
-    BlackjackSolitaireLine(ArrayList<Card> cards) {
+    BlackjackSolitaireLine(List<Card> cards) {
         this.cards = cards;
     }
 
@@ -30,8 +28,8 @@ public class BlackjackSolitaireLine {
      * @return points for BlackjackSolitaire line
      */
     public int getPoints() {
-        HashSet<Integer> previousPoints = new HashSet<>();
-        HashSet<Integer> nextPoints = new HashSet<>();
+        Set<Integer> previousPoints = new HashSet<Integer>();
+        Set<Integer> nextPoints = new HashSet<Integer>();
         previousPoints.add(0);
 
         for (Card card : cards) {
@@ -44,7 +42,7 @@ public class BlackjackSolitaireLine {
             nextPoints = new HashSet<Integer>();
         }
 
-        ArrayList<Integer> allPoints = new ArrayList<>();
+        List<Integer> allPoints = new ArrayList<>();
         for (Integer point : previousPoints) {
             if (point < threshold) {
                 allPoints.add(point);
