@@ -4,7 +4,7 @@ import java.util.*;
  * BlackjackSolitaireLine class describes line of cards of BlackJack solitaire game table
  */
 public class BlackjackSolitaireLine {
-    private List<Card> cards;
+    private final List<Card> cards;
     private static final int THRESHOLD = 21;
 
     BlackjackSolitaireLine(List<Card> cards) {

@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Card Deck class describes the playing deck model
@@ -26,7 +24,7 @@ public class Deck {
      * @return Card from the deck.
      */
     public Card nextCard() {
-        if (currentCardIndex == cards.size() - 1) {
+        if (currentCardIndex == cards.size()) {
             return null;
         }
         return cards.get(currentCardIndex++);

@@ -18,7 +18,7 @@ public class BlackjackSolitaire {
 
         int score = 0;
         for (BlackjackSolitaireLine line : gameTable.getBlackjackSolitaireLines()) {
-            score += ScoreResolver.CalculateScoreForLine(line);
+            score += ScoreResolver.calculateScoreForLine(line);
         }
         return String.format("Final score: %d.", score);
     }

@@ -8,10 +8,10 @@ public class ScoreResolver {
      * @param line is BlackjackSolitaireLine filled with cards
      * @return score for BlackjackSolitaire line
      */
-    public static int CalculateScoreForLine(BlackjackSolitaireLine line) {
+    public static int calculateScoreForLine(BlackjackSolitaireLine line) {
         int linePoints = line.getPoints();
         int lineLength = line.getLength();
-        if (linePoints == 21 & lineLength == 2) {
+        if (linePoints == 21 && lineLength == 2) {
             return 10;
         }
         if (linePoints == 21) {

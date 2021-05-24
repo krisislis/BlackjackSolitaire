@@ -6,9 +6,9 @@ import java.util.List;
  * It has 20 card cells, 16 of them are for active cards and other cells are for discard cards
  */
 public class BlackjackSolitaireTable {
-    private Card[] cells = new Card[20];
+    private final Card[] cells = new Card[20];
     private static final int ACTIVE_CELLS_SIZE = 16;
-    private int[][] allLinesIndexes = {
+    private final int[][] allLinesIndexes = {
             {0, 1, 2, 3, 4},
             {5, 6, 7, 8, 9},
             {10, 11, 12},
@@ -19,11 +19,6 @@ public class BlackjackSolitaireTable {
             {3, 8, 12, 15},
             {4, 9},
     };
-    private String blackjackSolitaireTableView =
-            "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
-                    "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
-                    "   \t\t%s\t\t%s\t\t%s\n" +
-                    "   \t\t%s\t\t%s\t\t%s\n";
 
     private int getNumberOfFreeDiscardCells() {
         int numberOfFreeDiscardCells = 0;
@@ -36,7 +31,7 @@ public class BlackjackSolitaireTable {
     }
 
     private List<Card> createArrayListFromCellsIndexes(int[] indexes) {
-        List<Card> cardArrayList = new ArrayList<Card>();
+        List<Card> cardArrayList = new ArrayList<>();
         for (int i : indexes) {
             cardArrayList.add(cells[i]);
         }
@@ -117,6 +112,11 @@ public class BlackjackSolitaireTable {
         }
 
         String discardCellsMessage = String.format("Free slots on discard pile: %d", getNumberOfFreeDiscardCells());
-        return String.format(blackjackSolitaireTableView, currentCellValues) + discardCellsMessage;  // TODO IDE ругается на то, что currentCellValues не Object
+        String blackjackSolitaireTableView =
+                "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
+                "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
+                "   \t\t%s\t\t%s\t\t%s\n" +
+                "   \t\t%s\t\t%s\t\t%s\n";
+        return String.format(blackjackSolitaireTableView, (Object[]) currentCellValues) + discardCellsMessage;
     }
 }
