@@ -28,11 +28,17 @@ public class BlackjackSolitaireLine {
      * @return points for BlackjackSolitaire line
      */
     public int getPoints() {
+        if (cards.isEmpty()) {
+            throw new IllegalArgumentException("Line must not be empty to calculate points!");
+        }
         Set<Integer> previousPoints = new HashSet<>();
         Set<Integer> nextPoints = new HashSet<>();
         previousPoints.add(0);
 
         for (Card card : cards) {
+            if (card == null) {
+                throw new IllegalArgumentException("Line must be full of cards to calculate points!");
+            }
             for (Integer cardPoint : card.getPoints()) {
                 for (Integer point : previousPoints) {
                     nextPoints.add(cardPoint + point);
