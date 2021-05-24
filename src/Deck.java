@@ -5,11 +5,10 @@ import java.util.*;
  */
 public class Deck {
     private List<Card> cards;
-    private int currentCardIndex;
+    private int currentCardIndex = 0;
 
-    Deck() {
-        this.currentCardIndex = 0;
-        this.cards = new ArrayList<Card>(Suit.values().length * Rank.values().length);
+    private Deck() {
+        this.cards = new ArrayList<>(Suit.values().length * Rank.values().length);
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 Card card = new Card(suit, rank);
@@ -33,8 +32,10 @@ public class Deck {
     /**
      * Shuffles the deck if no cards have been drawn yet
      */
-    public void shuffle() {
-        Collections.shuffle(cards);
+    public static Deck getShuffledDeck() {
+        Deck deck = new Deck();
+        Collections.shuffle(deck.cards);
+        return deck;
     }
 
 }

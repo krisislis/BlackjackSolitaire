@@ -28,8 +28,7 @@ public class BlackjackSolitaire {
      * including communication with the player.
      */
     public void play() {
-        Deck deck = new Deck();
-        deck.shuffle();
+        Deck deck = Deck.getShuffledDeck();
         BlackjackSolitaireTable gameTable = new BlackjackSolitaireTable();
 
         String cardPlaceLine;
