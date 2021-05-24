@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class BlackjackSolitaireTable {
     private Card[] cells = new Card[20];
-    private static final int activeCellsSize = 16;
+    private static final int ACTIVE_CELLS_SIZE = 16;
     private int[][] allLinesIndexes = {
             {0, 1, 2, 3, 4},
             {5, 6, 7, 8, 9},
@@ -27,7 +27,7 @@ public class BlackjackSolitaireTable {
 
     private int getNumberOfFreeDiscardCells() {
         int numberOfFreeDiscardCells = 0;
-        for (int i = activeCellsSize; i < cells.length; i++) {
+        for (int i = ACTIVE_CELLS_SIZE; i < cells.length; i++) {
             if (cells[i] == null) {
                 numberOfFreeDiscardCells++;
             }
@@ -53,7 +53,7 @@ public class BlackjackSolitaireTable {
      * @return true if there are free cells, otherwise false
      */
     public boolean isFull() {
-        for (int i = 0; i < activeCellsSize; i++) {
+        for (int i = 0; i < ACTIVE_CELLS_SIZE; i++) {
             if (cells[i] == null) {
                 return false;
             }
@@ -111,8 +111,8 @@ public class BlackjackSolitaireTable {
      * @return String with view of BlackjackSolitaireTable
      */
     public String show() {
-        String[] currentCellValues = new String[activeCellsSize];
-        for (int i = 0; i < activeCellsSize; i++) {
+        String[] currentCellValues = new String[ACTIVE_CELLS_SIZE];
+        for (int i = 0; i < ACTIVE_CELLS_SIZE; i++) {
             currentCellValues[i] = cells[i] == null ? String.valueOf(i + 1) : cells[i].show();
         }
 

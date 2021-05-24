@@ -5,7 +5,7 @@ import java.util.*;
  */
 public class BlackjackSolitaireLine {
     private List<Card> cards;
-    private static final int threshold = 21;
+    private static final int THRESHOLD = 21;
 
     BlackjackSolitaireLine(List<Card> cards) {
         this.cards = cards;
@@ -44,12 +44,12 @@ public class BlackjackSolitaireLine {
 
         List<Integer> allPoints = new ArrayList<>();
         for (Integer point : previousPoints) {
-            if (point < threshold) {
+            if (point < THRESHOLD) {
                 allPoints.add(point);
             }
         }
         if (allPoints.isEmpty()) {
-            return threshold + 1;
+            return THRESHOLD + 1;
         }
         return Collections.max(allPoints);
     }

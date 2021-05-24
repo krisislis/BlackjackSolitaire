@@ -5,9 +5,9 @@ import java.util.Scanner;
  * BlackjackSolitaire class describes game process
  */
 public class BlackjackSolitaire {
-    private static String greetingMessage = "Welcome to Blackjack Solitaire Game!";
+    private static final String GREETING_MESSAGE = "Welcome to Blackjack Solitaire Game!";
 
-    private static String delimiter = String.join("", Collections.nCopies(75, "*"));
+    private static final String DELIMITER = String.join("", Collections.nCopies(75, "*"));
 
     private static String cardReplacementMessage(String cardName) {
         return String.format("Current card is %s; where do you want to place it? ", cardName);
@@ -36,10 +36,10 @@ public class BlackjackSolitaire {
         int cardPlace;
         Scanner in = new Scanner(System.in);
 
-        System.out.println(greetingMessage);
+        System.out.println(GREETING_MESSAGE);
         while (!gameTable.isFull()) {
             System.out.println(gameTable.show());
-            System.out.println(delimiter);
+            System.out.println(DELIMITER);
 
             Card card = deck.nextCard();
             while (true) {
@@ -49,7 +49,7 @@ public class BlackjackSolitaire {
                     cardPlace = Integer.parseInt(cardPlaceLine);
                 } catch (NumberFormatException e) {
                     System.out.println("Space index must be integer!");
-                    System.out.println(delimiter);
+                    System.out.println(DELIMITER);
                     continue;
                 }
                 try {
@@ -57,7 +57,7 @@ public class BlackjackSolitaire {
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
-                    System.out.println(delimiter);
+                    System.out.println(DELIMITER);
                 }
             }
         }
