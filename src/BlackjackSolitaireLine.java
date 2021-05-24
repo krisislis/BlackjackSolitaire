@@ -28,8 +28,8 @@ public class BlackjackSolitaireLine {
      * @return points for BlackjackSolitaire line
      */
     public int getPoints() {
-        Set<Integer> previousPoints = new HashSet<Integer>();
-        Set<Integer> nextPoints = new HashSet<Integer>();
+        Set<Integer> previousPoints = new HashSet<>();
+        Set<Integer> nextPoints = new HashSet<>();
         previousPoints.add(0);
 
         for (Card card : cards) {
@@ -39,7 +39,7 @@ public class BlackjackSolitaireLine {
                 }
             }
             previousPoints = nextPoints;
-            nextPoints = new HashSet<Integer>();
+            nextPoints = new HashSet<>();
         }
 
         List<Integer> allPoints = new ArrayList<>();

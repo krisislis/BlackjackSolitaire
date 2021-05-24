@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,16 +20,6 @@ public class BlackjackSolitaireTable {
             {3, 8, 12, 15},
             {4, 9},
     };
-
-    private int getNumberOfFreeDiscardCells() {
-        int numberOfFreeDiscardCells = 0;
-        for (int i = ACTIVE_CELLS_SIZE; i < cells.length; i++) {
-            if (cells[i] == null) {
-                numberOfFreeDiscardCells++;
-            }
-        }
-        return numberOfFreeDiscardCells;
-    }
 
     private List<Card> createArrayListFromCellsIndexes(int[] indexes) {
         List<Card> cardArrayList = new ArrayList<>();
@@ -106,17 +97,19 @@ public class BlackjackSolitaireTable {
      * @return String with view of BlackjackSolitaireTable
      */
     public String show() {
-        String[] currentCellValues = new String[ACTIVE_CELLS_SIZE];
-        for (int i = 0; i < ACTIVE_CELLS_SIZE; i++) {
+        String[] currentCellValues = new String[cells.length];
+        for (int i = 0; i < cells.length; i++) {
             currentCellValues[i] = cells[i] == null ? String.valueOf(i + 1) : cells[i].show();
         }
-
-        String discardCellsMessage = String.format("Free slots on discard pile: %d", getNumberOfFreeDiscardCells());
         String blackjackSolitaireTableView =
                 "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
                 "%s\t\t%s\t\t%s\t\t%s\t\t%s\n" +
                 "   \t\t%s\t\t%s\t\t%s\n" +
-                "   \t\t%s\t\t%s\t\t%s\n";
-        return String.format(blackjackSolitaireTableView, (Object[]) currentCellValues) + discardCellsMessage;
+                "   \t\t%s\t\t%s\t\t%s\n\n";
+
+        String discardCellsMessage = "Slots on discard pile: %s\t%s\t%s\t%s";
+
+        return String.format(blackjackSolitaireTableView, (Object[]) Arrays.copyOfRange(currentCellValues, 0, ACTIVE_CELLS_SIZE))
+                + String.format(discardCellsMessage, (Object[]) Arrays.copyOfRange(currentCellValues, ACTIVE_CELLS_SIZE, cells.length));
     }
 }

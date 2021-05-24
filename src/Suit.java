@@ -7,7 +7,7 @@ public enum Suit {
     HEARTS("H"),
     SPADES("S");
 
-    private String shortName;
+    private final String shortName;
 
     Suit(String shortName) {
         this.shortName = shortName;
