@@ -55,6 +55,9 @@ public class BlackjackSolitaireTable {
      * @throws IllegalArgumentException if out-of-bound cell index or cell has already been filled
      */
     public void putCardToCell(Card card, int cellIndex) throws IllegalArgumentException {
+        if (card == null) {
+            throw new IllegalArgumentException("There are no card to put!");
+        }
         cellIndex--;
         String cardNameByIndex;
 

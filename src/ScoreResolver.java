@@ -9,6 +9,9 @@ public class ScoreResolver {
      * @return score for BlackjackSolitaire line
      */
     public static int calculateScoreForLine(BlackjackSolitaireLine line) {
+        if (line == null) {
+            throw new IllegalArgumentException("There no line to calculate points!");
+        }
         int linePoints = line.getPoints();
         int lineLength = line.getLength();
         if (linePoints == 21 && lineLength == 2) {
