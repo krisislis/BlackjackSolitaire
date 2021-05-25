@@ -7,15 +7,15 @@ enum Suit {
 
 enum Rank{
     - rank: String
-    - points: ArrayList<Integer>
-    + getPoints(): ArrayList<Integer>
+    - points: List<Integer>
+    + getPoints(): List<Integer>
     + show(): String
 }
 
 class Card {
     - suit: Suit
     - rank: Rank
-    + getPoints(): ArrayList<Integer>
+    + getPoints(): List<Integer>
     + show(): String
 }
 
@@ -23,14 +23,14 @@ Card o-- Suit
 Card o-- Rank
 
 class Deck {
-    - cards: ArrayList<Card>
+    - cards: List<Card>
     - currentCardIndex: int
     + nextCard(): Card
-    + shuffle()
+    + Deck getShuffledDeck()
 }
 
 class BlackjackSolitaireLine {
-    - cards: ArrayList<Card>
+    - cards: List<Card>
     - threshold: int
     + getPoints(): int
     + getLength(): int
@@ -38,7 +38,6 @@ class BlackjackSolitaireLine {
 
 class BlackjackSolitaireTable {
     - cells: Card[]
-    - getNumberOfFreeDiscardCells(): int
     - getCardNameByIndex(): String
     - createArrayListFromCellsIndexes(): ArrayList<Card>
     + isFull(): boolean
