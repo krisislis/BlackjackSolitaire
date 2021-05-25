@@ -45,7 +45,7 @@ public class BlackjackSolitaire {
                 System.out.print(cardReplacementMessage(card.show()));
                 cardPlaceLine = in.nextLine();
                 try {
-                    cardPlace = Integer.parseInt(cardPlaceLine);
+                    cardPlace = Integer.parseInt(cardPlaceLine.replace(" ", ""));
                 } catch (NumberFormatException e) {
                     System.out.println("Space index must be integer!");
                     System.out.println(DELIMITER);
