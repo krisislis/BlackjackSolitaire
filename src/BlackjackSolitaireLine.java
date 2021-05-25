@@ -50,7 +50,7 @@ public class BlackjackSolitaireLine {
 
         List<Integer> allPoints = new ArrayList<>();
         for (Integer point : previousPoints) {
-            if (point < THRESHOLD) {
+            if (point <= THRESHOLD) {
                 allPoints.add(point);
             }
         }
